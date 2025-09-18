@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App (Demo)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #87ceeb, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background: #ffffffaa;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      width: 350px;
+    }
+    h1 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #1e90ff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #187bcd;
+    }
+    .weather-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #f0f8ff;
+      box-shadow: inset 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    .weather-box img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 15px;
+    }
+    .temp {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+    }
+    .desc {
+      font-size: 20px;
+      text-transform: capitalize;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <br>
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="weather" class="weather-box" style="display:none;">
+      <img id="icon" src="" alt="Weather Icon">
+      <div class="temp" id="temp"></div>
+      <div class="desc" id="desc"></div>
+    </div>
+  </div>
+
+  <script>
+    const sampleData = {
+      "kathmandu": {
+        temp: 22,
+        description: "clear sky",
+        icon: "01d"
+      },
+      "new york": {
+        temp: 18,
+        description: "few clouds",
+        icon: "02d"
+      },
+      "tokyo": {
+        temp: 25,
+        description: "light rain",
+        icon: "10d"
+      }
+    };
+
+    function getWeather() {
+      const city = document.getElementById("cityInput").value.trim().toLowerCase();
+      if (!city) {
+        alert("Please enter a city name");
+        return;
+      }
+
+      const data = sampleData[city];
+      if (data) {
+        document.getElementById("weather").style.display = "block";
+        document.getElementById("temp").innerText = `${data.temp} °C`;
+        document.getElementById("desc").innerText = data.description;
+        document.getElementById("icon").src =
+          `https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png`;
+      } else {
+        alert("City not found in demo data");
+      }
+    }
+  </script>
+</body>
+</html>
